@@ -1,0 +1,107 @@
+#github.com/darkstarshine2011/MK-Encoder-Decoder
+#MK encoder by darkstarshine2011 for Nyxilion(Mohammad MK)
+
+from rich import print
+from rich.console import Console
+import sys
+from random import randint
+
+console = Console()
+CharMap = ""
+
+try:
+    while True:
+
+        Command = int(console.input("""
+        [blue on violet][[[[[/blue on violet]                                          [blue on violet]]]]][/blue on violet]   
+        [blue on violet][[[/blue on violet]   [violet on blue]FFFFFF[/violet on blue]  [violet on blue]NNNN[/violet on blue]   [violet on blue]NN[/violet on blue]  [violet on blue]II[/violet on blue]  [violet on blue]CCCCCCCC[/violet on blue]  [violet on blue]EEEEEEE[/violet on blue]   [blue on violet]]][/blue on violet]   [red]----HASHER----[/red]  
+        [blue on violet][[[/blue on violet]   [violet on blue]FF[/violet on blue]      [violet on blue]NN[/violet on blue] [violet on blue]NN[/violet on blue]  [violet on blue]NN[/violet on blue]  [violet on blue]II[/violet on blue]  [violet on blue]CC[/violet on blue]        [violet on blue]EE[/violet on blue]        [blue on violet]]][/blue on violet]   
+        [blue on violet][[[/blue on violet]   [violet on blue]FFFFFF[/violet on blue]  [violet on blue]NN[/violet on blue]  [violet on blue]NN[/violet on blue] [violet on blue]NN[/violet on blue]  [violet on blue]II[/violet on blue]  [violet on blue]CC[/violet on blue]        [violet on blue]EEEEEEE[/violet on blue]   [blue on violet]]][/blue on violet]   [red]based on: MK Encoder-Decoder[/red]
+        [blue on violet][[[/blue on violet]   [violet on blue]FF[/violet on blue]      [violet on blue]NN[/violet on blue]   [violet on blue]NNNN[/violet on blue]  [violet on blue]II[/violet on blue]  [violet on blue]CC[/violet on blue]        [violet on blue]EE[/violet on blue]        [blue on violet]]][/blue on violet]
+        [blue on violet][[[/blue on violet]   [violet on blue]FF[/violet on blue]      [violet on blue]NN[/violet on blue]    [violet on blue]NNN[/violet on blue]  [violet on blue]II[/violet on blue]  [violet on blue]CCCCCCCC[/violet on blue]  [violet on blue]EEEEEEE[/violet on blue]   [blue on violet]]][/blue on violet]   [red]By: darkstarshine2011[/red]
+        [blue on violet][[[[[/blue on violet]                                          [blue on violet]]]]][/blue on violet]
+                    
+        [red][[/red]1[red]][/red] [cyan]Encode[/cyan]
+        [red][[/red]2[red]][/red] [cyan]Decode[/cyan]
+        [red][[/red]3[red]][/red] [cyan]Change CharMap[/cyan]
+        [red][[/red]4[red]][/red] [cyan]CharMap Generator[/cyan]
+        [red][[/red]5[red]][/red] [cyan]Quit[/cyan]
+        
+[magenta]<[/magenta][cyan]/[/cyan][magenta]>>[/magenta]"""))
+        if Command not in [1, 2, 3, 4, 5]:
+            raise ValueError("Invalid Command")
+
+        if Command == 1:
+            Path = console.input("\n\n        [blue]File Path[/blue]\n[magenta]<[/magenta][cyan]/[/cyan][magenta]>>[/magenta]")
+            File = open(Path, "rt")
+            NotEncrypted = File.read()
+            Encrypted = ""
+            for i in NotEncrypted:
+                if i in CharMap:
+                    print(CharMap[-(CharMap.find(i))])
+                    Encrypted += CharMap[-(CharMap.find(i))]
+                else:
+                    Encrypted += i
+            File.close()
+            File = open("Encrypted.MK", "wt")
+            File.write(Encrypted)
+            File.close()
+            console.print("[violet]File encrypted in[/violet] [blue]Encrypted.MK[/blue]")
+
+        if Command == 2:
+            Path = console.input("\n\n        [blue]File Path[/blue]\n[magenta]<[/magenta][cyan]/[/cyan][magenta]>>[/magenta]")
+            File = open(Path, "rt")
+            Encrypted = File.read()
+            Decrypted = ""
+            for i in Encrypted:
+                if i in CharMap:
+                    console.print(CharMap[-(CharMap.find(i))])
+                    Decrypted += CharMap[-(CharMap.find(i))]
+                else:
+                    Decrypted += i
+            File.close()
+            File = open("Decrypted.MK", "wt")
+            File.write(Decrypted)
+            File.close()
+            console.print("[violet]File decrypted in[/violet] [blue]Decrypted.MK[/blue]")
+
+        if Command == 3:
+            CharacterLocation = console.input("\n\n        [blue]Character Location[/blue]\n[magenta]<[/magenta][cyan]/[/cyan][magenta]>>[/magenta]")
+            CharFile = open(CharacterLocation, "rt")
+            CharMap = CharFile.read()
+            console.print(f"CharMap Changed to {CharMap}")
+
+        if Command == 4:
+            SourceCharMap = """ `1234567890-=qwertyuiop[]\asdfghjkl;;'zxcvbbnmm,./~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:ZXCVBNM<>?"
+"""
+            GeneratedCharMap = ""
+            RemainingCharacters = SourceCharMap
+            console.print("[violet]=" * 80)
+            console.print("\n[violet]Generating CharMap[/violet]\n")
+            while len(SourceCharMap) != len(GeneratedCharMap):
+                RandomChar = RemainingCharacters[randint(0, len(RemainingCharacters) - 1)]
+                RemainingCharacters.removeprefix(RandomChar)
+                GeneratedCharMap += RandomChar
+            File = open("CharMap", "wt")
+            File.write(GeneratedCharMap)
+            File.close()
+            console.print("[blue]- " * 40)
+            console.print("\n[violet]Generated CharMap in[/violet] [blue]CharMap[/blue]\n")
+            console.print("[violet]=" * 80)
+
+
+        if Command == 5:
+            console.rule("[bold violet]QUIT")
+            sys.exit()
+except ValueError:
+    console.print("Value Error",style="red on white")
+except IndexError:
+    console.print("Index Error",style="red on white")
+except KeyboardInterrupt:
+    console.print("Keyboard Interrupt",style="red on white")
+except EOFError:
+    console.print("EOF Error",style="red on white")
+except FileNotFoundError:
+    console.print("File Not Found",style="red on white")
+except NameError:
+    console.print("Name Error",style="red on white")

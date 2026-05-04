@@ -43,10 +43,10 @@ try:
                 else:
                     Encrypted += i
             File.close()
-            File = open("Encrypted.FNICE", "wt")
+            File = open("Encrypted.FNICE.MK", "wt")
             File.write(Encrypted)
             File.close()
-            console.print("[violet]File encrypted in[/violet] [blue]Encrypted.FNICE[/blue]")
+            console.print("[violet]File encrypted in[/violet] [blue]Encrypted.FNICE.MK[/blue]")
 
         if Command == 2:
             Path = console.input("\n\n        [blue]File Path[/blue]\n[magenta]<[/magenta][cyan]/[/cyan][magenta]>>[/magenta]")
@@ -60,10 +60,10 @@ try:
                 else:
                     Decrypted += i
             File.close()
-            File = open("Decrypted.FNICE", "wt")
+            File = open("Decrypted.FNICE.MK", "wt")
             File.write(Decrypted)
             File.close()
-            console.print("[violet]File decrypted in[/violet] [blue]Decrypted.FNICE[/blue]")
+            console.print("[violet]File decrypted in[/violet] [blue]Decrypted.FNICE.MK[/blue]")
 
         if Command == 3:
             CharacterLocation = console.input("\n\n        [blue]Character Location[/blue]\n[magenta]<[/magenta][cyan]/[/cyan][magenta]>>[/magenta]")

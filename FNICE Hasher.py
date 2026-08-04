@@ -38,7 +38,6 @@ try:
             Encrypted = ""
             for i in NotEncrypted:
                 if i in CharMap:
-                    print(CharMap[-(CharMap.find(i))])
                     Encrypted += CharMap[-(CharMap.find(i))]
                 else:
                     Encrypted += i
@@ -46,7 +45,7 @@ try:
             File = open("Encrypted.FNICE.MK", "wt")
             File.write(Encrypted)
             File.close()
-            console.print("[violet]File encrypted in[/violet] [blue]Encrypted.FNICE.MK[/blue]")
+            console.print("[violet]--File encrypted in[/violet] [blue]Encrypted.FNICE.MK[/blue][violet]--[/violet]")
 
         if Command == 2:
             Path = console.input("\n\n        [blue]File Path[/blue]\n[magenta]<[/magenta][cyan]/[/cyan][magenta]>>[/magenta]")
@@ -55,7 +54,6 @@ try:
             Decrypted = ""
             for i in Encrypted:
                 if i in CharMap:
-                    console.print(CharMap[-(CharMap.find(i))])
                     Decrypted += CharMap[-(CharMap.find(i))]
                 else:
                     Decrypted += i
@@ -63,21 +61,28 @@ try:
             File = open("Decrypted.FNICE.MK", "wt")
             File.write(Decrypted)
             File.close()
-            console.print("[violet]File decrypted in[/violet] [blue]Decrypted.FNICE.MK[/blue]")
+            console.print("[violet]--File decrypted in[/violet] [blue]Decrypted.FNICE.MK[/blue][violet]--[/violet]")
 
         if Command == 3:
             CharacterLocation = console.input("\n\n        [blue]Character Location[/blue]\n[magenta]<[/magenta][cyan]/[/cyan][magenta]>>[/magenta]")
             CharFile = open(CharacterLocation, "rt")
-            CharMap = CharFile.read()
-            console.print(f"CharMap Changed to {CharMap}")
+            RawCharMap = CharFile.read()
+            UniqueChars = []
+            SeenChars = set()
+            for i in RawCharMap:
+                if i not in SeenChars:
+                    UniqueChars.append(i)
+                    SeenChars.add(i)
+            CharMap = "".join(UniqueChars)
+
 
         if Command == 4:
-            SourceCharMap = """ `1234567890-=qwertyuiop[]\asdfghjkl;;'zxcvbbnmm,./~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:ZXCVBNM<>?"
+            SourceCharMap = """ `1234567890-=qwertyuiop[]\\asdfghjkl;;'zxcvbbnmm,./~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:ZXCVBNM<>?"
 """
             GeneratedCharMap = ""
             RemainingCharacters = SourceCharMap
             console.print("[violet]=" * 80)
-            console.print("\n[violet]Generating CharMap[/violet]\n")
+            console.print("\n[violet]--Generating CharMap--[/violet]\n")
             while len(SourceCharMap) != len(GeneratedCharMap):
                 RandomChar = RemainingCharacters[randint(0, len(RemainingCharacters) - 1)]
                 RemainingCharacters.removeprefix(RandomChar)
@@ -86,7 +91,7 @@ try:
             File.write(GeneratedCharMap)
             File.close()
             console.print("[blue]- " * 40)
-            console.print("\n[violet]Generated CharMap in[/violet] [blue]CharMap[/blue]\n")
+            console.print("\n[violet]--Generated CharMap in[/violet] [blue]CharMap[/blue][violet]--[/violet]\n")
             console.print("[violet]=" * 80)
 
 

@@ -131,7 +131,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -148,9 +148,13 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.EncodeTab), QCoreApplication.translate("MainWindow", u"Encode", None))
         self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"Browse", None))
         self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"Decode", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"[CharMap] The key that is going to encode the file", None))
+        # ===== این خط تغییر کرده =====
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"[CharMap] The key that is going to decode the file", None))
+        # ===========================
         self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"Browse", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"[File] The file that is giong to be encoded", None))
+        # ===== این خط تغییر کرده =====
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"[File] The file that is giong to be decoded", None))
+        # ===========================
         self.label_6.setText("")
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.DecodeTab), QCoreApplication.translate("MainWindow", u"Decode", None))
         self.pushButton_7.setText(QCoreApplication.translate("MainWindow", u"Generate New CharMap File", None))
@@ -254,7 +258,7 @@ class MainWindow(QMainWindow):
             self.ui.label_6.setText(f"❌ Error: {str(e)}")
 
     def generate_charmap(self):
-        source = """ `1234567890-=qwertyuiop[]\\asdfghjkl;;'zxcvbbnmm,./~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:ZXCVBNM<>?
+        source = """ `1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbbnmm,./~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:ZXCVBNM<>?
 """
         
         remaining = list(source)

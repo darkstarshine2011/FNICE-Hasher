@@ -77,7 +77,7 @@ try:
 
 
         if Command == 4:
-            SourceCharMap = """ `1234567890-=qwertyuiop[]\\asdfghjkl;;'zxcvbbnmm,./~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:ZXCVBNM<>?"
+            SourceCharMap = """ `1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbbnmm,./~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:ZXCVBNM<>?"
 """
             GeneratedCharMap = ""
             RemainingCharacters = SourceCharMap
